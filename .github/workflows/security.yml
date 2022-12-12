@@ -7,6 +7,12 @@ on:
         description: Tag of Docker image (without repository) to verify
         required: true
         type: string
+      role-to-assume:
+        description: Role to assume that has read access to the registry.
+        required: false
+      role-session-name:
+        description: Session name to use when assuming the role.
+        required: false
       working-directory:
         description: Workflow working directory
         default: '.'
@@ -17,14 +23,17 @@ on:
         description: The registry where the image will be pulled from.
         required: true
       ECR_AWS_ACCESS_KEY_ID:
-        description: An AWS access key ID that has read permissions to the registry.
-        required: true
+        description: DEPRECATED. An AWS access key ID that has read permissions to the registry.
+        required: false
       ECR_AWS_SECRET_ACCESS_KEY:
-        description: An AWS secret access key that has read permissions to the registry.
-        required: true
+        description: DEPRECATED. An AWS secret access key that has read permissions to the registry.
+        required: false
       ECR_AWS_REGION:
         description: AWS region for the registry.
         required: true
+      ECR_ROLE_TO_ASSUME:
+        description: Role to assume that has read access to the registry.
+        required: false
 
 jobs:
   sast:
@@ -41,6 +50,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.ECR_AWS_REGION }}
           image-name: ${{ secrets.REGISTRY }}/${{ inputs.image-tag }}
+          role-to-assume: ${{ inputs.role-to-assume || secrets.ECR_ROLE_TO_ASSUME }}
+          role-session-name: ${{ inputs.role-session-name }
           working-directory: ${{ inputs.working-directory }}
 
   sbom:
@@ -57,5 +68,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.ECR_AWS_REGION }}
           image-name: ${{ secrets.REGISTRY }}/${{ inputs.image-tag }}
-          publish: ${{ inputs.dependency-track-publish }}
+          role-to-assume: ${{ inputs.role-to-assume || secrets.ECR_ROLE_TO_ASSUME }}
+          role-session-name: ${{ inputs.role-session-name }
           working-directory: ${{ inputs.working-directory }}
