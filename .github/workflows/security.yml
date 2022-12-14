@@ -53,7 +53,7 @@ jobs:
           aws-region: ${{ secrets.ECR_AWS_REGION }}
           image-name: ${{ secrets.REGISTRY }}/${{ inputs.image-tag }}
           role-to-assume: ${{ inputs.role-to-assume || secrets.ECR_ROLE_TO_ASSUME }}
-          role-session-name: ${{ inputs.role-session-name }
+          role-session-name: ${{ inputs.role-session-name }}
           working-directory: ${{ inputs.working-directory }}
 
   sbom:
@@ -71,5 +71,5 @@ jobs:
           aws-region: ${{ secrets.ECR_AWS_REGION }}
           image-name: ${{ secrets.REGISTRY }}/${{ inputs.image-tag }}
           role-to-assume: ${{ inputs.role-to-assume || secrets.ECR_ROLE_TO_ASSUME }}
-          role-session-name: ${{ inputs.role-session-name }
+          role-session-name: ${{ inputs.role-session-name }}
           working-directory: ${{ inputs.working-directory }}
