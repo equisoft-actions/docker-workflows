@@ -10,9 +10,11 @@ on:
       role-to-assume:
         description: Role to assume that has read access to the registry.
         required: false
+        type: string
       role-session-name:
         description: Session name to use when assuming the role.
         required: false
+        type: string
       working-directory:
         description: Workflow working directory
         default: '.'
