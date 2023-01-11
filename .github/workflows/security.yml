@@ -38,24 +38,6 @@ on:
         required: false
 
 jobs:
-  sast:
-    name: Docker SAST
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: SAST
-        uses: equisoft-actions/docker-sast@v2
-        with:
-          aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.ECR_AWS_REGION }}
-          image-name: ${{ secrets.REGISTRY }}/${{ inputs.image-tag }}
-          role-to-assume: ${{ inputs.role-to-assume || secrets.ECR_ROLE_TO_ASSUME }}
-          role-session-name: ${{ inputs.role-session-name }}
-          working-directory: ${{ inputs.working-directory }}
-
   sbom:
     name: Docker SBOM
     runs-on: ubuntu-latest
