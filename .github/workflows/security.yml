@@ -74,7 +74,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate and publish SBOM
-        uses: equisoft-actions/docker-sbom@v3
+        uses: equisoft-actions/docker-sbom@34df5d895cb8f85958f6f3ad6ec52ce7231088a3
         with:
           aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
