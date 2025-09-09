@@ -40,7 +40,7 @@ on:
 jobs:
   sast:
     name: Docker SAST
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -68,7 +68,7 @@ jobs:
 
   sbom:
     name: Docker SBOM
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v5
