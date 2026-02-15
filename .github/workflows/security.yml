@@ -55,7 +55,7 @@ jobs:
           echo "report-name=$report_name" >> $GITHUB_OUTPUT
 
       - name: SAST
-        uses: equisoft-actions/docker-sast@v3
+        uses: equisoft-actions/docker-sast@v13
         with:
           aws-access-key-id: ${{ secrets.ECR_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.ECR_AWS_SECRET_ACCESS_KEY }}
